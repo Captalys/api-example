@@ -18,6 +18,10 @@
    :person/age schema/Int
    :person/country schema/Keyword})
 
+(schema/defschema numbers-spec
+  {:x schema/Int
+   :y schema/Int})
+
 
 (defmulti validation-handler (fn [approach f e type] approach))
 
@@ -53,13 +57,21 @@
       ;; I only wanted to provide a code example for both of them, therefore the dispatch defmulti below.
       (validation-handler approach f e type))))
 
+(defn division-error-handler [f type]
+  (fn [^Exception e data request]
+    (f {:message "Dividing two numbers and you got it wrong!!...!!"
+        :extra-message "Shame!"
+        :type type})))
+
 (def app
   (api
    {:swagger
     {:ui "/" :spec "/swagger.json"}
     :exceptions
     {:handlers
-     {::ex/request-validation (custom-validation-handler http-response/internal-server-error "Request Validation Error")}}}
+     {::ex/request-validation (custom-validation-handler http-response/internal-server-error "Request Validation Error")
+      java.lang.ArithmeticException (division-error-handler http-response/internal-server-error "You suck")}}}
+
    (POST "/people-schema" []
      :summary "default approach"
      :body [people person-spec]
@@ -71,4 +83,10 @@
        :post {:summary "data-driven approach"
               :parameters {:body-params :person/spec}
               :handler (fn [{people :body-params}]
-                         (ok {:ping "pong-spec"}))}}))))
+                         (ok {:ping "pong-spec"}))}}))
+
+   (GET "/wrong-addition" []
+     :summary "You can add these two numbers. Try it!"
+     :query-params [x :- schema/Int
+                    y :- schema/Int]
+     (ok (/ x 0)))))
