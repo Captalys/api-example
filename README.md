@@ -9,6 +9,15 @@ How Captalys is working in Clojure to build Services APIs to its internal proces
 WEBSERVER_PORT=3000 CURRENT_UID=$(id -u):$(id -g) docker-compose up
 ```
 
+Connect your project to the new created REPL. If you are
+using CIDER in Emacs, just `M-x cider-connect-clj` or `C-c
+M-c` keychord. The host is `localhost` and the port should
+be `17020`.
+
+Now, start the webserver with the `(start)` command inside the REPL.
+Your API should be on at the `http://localhost:17021/`
+
+
 ## License
 
 Copyright © 2020 Wanderson Ferreira
