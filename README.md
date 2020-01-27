@@ -1,12 +1,13 @@
 # api-example
 
-A Clojure project to study APIs using compojure, schema,
-clojure.spec and some others..
+How Captalys is working in Clojure to build Services APIs to its internal processes.
+
 
 ## Usage
 
-`lein ring server <port-of-your-choice>`
-
+```bash
+WEBSERVER_PORT=3000 CURRENT_UID=$(id -u):$(id -g) docker-compose up
+```
 
 ## License
 

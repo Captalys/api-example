@@ -1,0 +1,10 @@
+from clojure:openjdk-8-lein
+
+WORKDIR /app
+
+ARG WEBSERVER_PORT
+ENV WEBSERVER_PORT=${WEBSERVER_PORT}
+
+COPY . /app
+
+ENTRYPOINT ["/bin/bash", "/app/entrypoint-dev.sh"]

@@ -14,6 +14,7 @@
                  [mount "0.1.9"]
                  [aero "1.1.3"]
                  [migratus "1.2.7"]]
-  :main api-example.core
-  :profiles {:dev {:plugins [[lein-ring "0.12.5"]]}}
+  :main api-example.server
+  :profiles {:dev {:source-paths ["src" "dev"]
+                   :plugins [[lein-ring "0.12.5"]]}}
   :repl-options {:init-ns user})

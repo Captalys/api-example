@@ -62,6 +62,6 @@
 
 
 (mount/defstate server
-  :start (let [port (get-in config [:webserver :port])]
+  :start (let [port (Integer. (get-in config [:webserver :port]))]
            (jetty/run-jetty #'app {:port port :join? false}))
   :stop (.stop server))
