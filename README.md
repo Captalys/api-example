@@ -17,6 +17,12 @@ be `17020`.
 Now, start the webserver with the `(start)` command inside the REPL.
 Your API should be on at the `http://localhost:17021/`
 
+You should also manually apply the migrations. This should do the trick:
+
+```clj
+(require '[api-example.migrations :as m])
+(m/apply-migrations)
+```
 
 ## License
 

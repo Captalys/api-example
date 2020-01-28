@@ -21,7 +21,26 @@ services:
       - $PWD:$PWD
       - /etc/passwd:/etc/passwd
       - /etc/group:/etc/group
+      - $HOME/.lein:$HOME/.lein
       - /tmp:/tmp
       - .:/app/
       - ./.m2:/root/.m2/repository
     user: ${CURRENT_UID}
+  db:
+    image: postgres:10.6
+    restart: always
+    networks:
+      - example
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_MULTIPLE_DATABASES: example,example_test
+
+    volumes:
+      - ./dev/database:/docker-entrypoint-initdb.d
+      # the oficial docs of postgresql asks you to create scripts to run at the startup process
+      # inside the directory /dev/database
+    ports:
+      - "54320:5432"
+    expose:
+      - "5432"
