@@ -1,5 +1,6 @@
 (ns api-example.core
   (:require [api-example.services.database :refer [datasource]]
+            [clojure.string :as cstr]
             [next.jdbc :as jdbc]
             [next.jdbc.sql :as sql]))
 
@@ -22,3 +23,13 @@
   "Query database by id."
   [id]
   (sql/get-by-id datasource "example_real" id))
+
+(defn sum-all-values
+  "Sum all the values in the provided data"
+  [data]
+  (reduce + (map :values data)))
+
+(defn join-all-letters
+  "Join all the letters in the data by a specified delimiter."
+  [data delimiter]
+  (cstr/join delimiter (reverse (map :letters data))))

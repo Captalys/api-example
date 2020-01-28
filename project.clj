@@ -12,6 +12,7 @@
                  [metosin/spec-tools "0.10.1"]
                  [org.postgresql/postgresql "42.2.5"]
                  [seancorfield/next.jdbc "1.0.10"]
+                 [org.clojure/test.check "0.10.0"]
                  [cheshire "5.9.0"]
                  [mount "0.1.9"]
                  [aero "1.1.3"]
