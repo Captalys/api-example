@@ -12,6 +12,7 @@
       (is (= (core/sum-all-values data) 42)))))
 
 
+;;; Property Based Tests [generative testing]
 ;;; 1. We need to find a property to test:  [hypothesis 1] - The sum of the numbers [if all positive] cannot be smaller than 0
 ;;; 2. We need to make a model to generate examples for us.
 (def gen-input-data (gen/not-empty (gen/vector (gen/hash-map
@@ -30,4 +31,5 @@
                 (let [result (core/sum-all-values data)]
                   (> result 0))))
 
-;;; 4. this property will run for 300 randomly generated examples. Can you catch the bug here? But your example-based one, just passed!
+;;; 4. This property will run for 300 randomly generated examples. Can you catch the bug here? But your example-based one, just passed!
+;;; 5. After running all these iterations, our hypothesis still holds? Yes? Jump to the next test =P
