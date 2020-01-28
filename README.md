@@ -24,6 +24,15 @@ You should also manually apply the migrations. This should do the trick:
 (m/apply-migrations)
 ```
 
+## Emacs users
+
+Please, edit the file `.dir-locals.el` to match the path of
+your machine until this project. The CIDER package needs
+that to provide you with auto-completions and more features
+when you connect to a remote REPL [remote in this case
+because we are outside Docker connecting to a REPL inside of
+it.]
+
 ## License
 
 Copyright © 2020 Wanderson Ferreira
