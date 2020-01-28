@@ -3,6 +3,13 @@
 How Captalys is working in Clojure to build Services APIs to its internal processes.
 
 
+## General guidelines
+
+1. RESTful APIs, follows some guidelines provided by [WhiteHouse/api-standards](https://github.com/WhiteHouse/api-standards)
+2. Documentation and consistency of APIs are very important to us
+3. Tests, we would think about what need to be tested and try to use **generative testing** as much as possible
+4. Program towards interfaces instead of concrete implementations, `multimethods` and `protocols` are friends
+
 ## Usage
 
 ```bash
