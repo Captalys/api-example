@@ -33,6 +33,35 @@ when you connect to a remote REPL [remote in this case
 because we are outside Docker connecting to a REPL inside of
 it.]
 
+
+### Linting
+
+Steps to perform linting correctly in the project.
+
+1. Install [clj-kondo](https://github.com/borkdude/clj-kondo)
+2. Create an empty directory in the root of the project called `.clj-kondo`
+3. Run the following command in the terminal to teach `clj-kondo` about the project `clj-kondo --lint "$(lein classpath)"`
+4. Find about [Editor Integration](https://github.com/borkdude/clj-kondo/blob/master/doc/editor-integration.md)
+
+
+#### Report about unused vars and functions
+
+As you are using Emacs (congrats!), run the following command in the Eshell.
+
+`clojure -A:carve --opts '{:paths ["src" "test"] :report {:format :text}}'`
+
+If you don't have `clojure` installed in your machine, please do!
+
+After that, you need to create a file called `deps.edn`
+inside a folder called `$HOME/.clojure` with the following content:
+
+```clojure
+:carve
+  {:extra-deps {borkdude/carve {:git/url "https://github.com/borkdude/carve"
+                                :sha "8e219572f55485244fdc35ac605d19bc74e9be0e"}}
+   :main-opts ["-m" "carve.main"]}
+```
+
 ## License
 
 Copyright © 2020 Wanderson Ferreira
