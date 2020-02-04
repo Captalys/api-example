@@ -62,6 +62,6 @@
 
 
 (mount/defstate server
-  :start (let [port (Integer. (get-in config [:webserver :port]))]
+  :start (let [port (get-in config [:webserver :port])]
            (http/run-server #'app {:port port :join? false}))
   :stop (server))
