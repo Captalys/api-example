@@ -7,7 +7,7 @@
                  [org.clojure/tools.namespace "0.3.1"]
                  [org.clojure/tools.logging "0.5.0"]
                  [metosin/reitit "0.4.1"]
-                 [ring/ring-jetty-adapter "1.7.1"]
+                 [http-kit "2.4.0-alpha3"]
                  [com.fasterxml.jackson.core/jackson-core "2.10.0"]
                  [metosin/spec-tools "0.10.1"]
                  [org.postgresql/postgresql "42.2.5"]

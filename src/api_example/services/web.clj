@@ -11,7 +11,7 @@
             [reitit.swagger :as swagger]
             [reitit.swagger-ui :as swagger-ui]
             [reitit.dev.pretty :as pretty]
-            [ring.adapter.jetty :as jetty]
+            [org.httpkit.server :as http]
             [api-example.services.config :refer [config]]))
 
 (s/def ::x float?)
@@ -63,5 +63,5 @@
 
 (mount/defstate server
   :start (let [port (Integer. (get-in config [:webserver :port]))]
-           (jetty/run-jetty #'app {:port port :join? false}))
-  :stop (.stop server))
+           (http/run-server #'app {:port port :join? false}))
+  :stop (server))
