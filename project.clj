@@ -1,4 +1,4 @@
-(defproject api-example "0.1.0-SNAPSHOT"
+(defproject api-example "0.1.2-SNAPSHOT"
   :description "Provide some study around API building"
   :url "http://github.com/wandersoncferreira/api-example"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
