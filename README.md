@@ -12,17 +12,31 @@ How Captalys is working in Clojure to build Services APIs to its internal proces
 
 ## Usage
 
+Install [leiningen](https://leiningen.org/) in your computer following
+the description in their website.
+
+Now, you can use our custom template of Rest API:
+
+`lein new captalys-api <project-name>`
+
+Great, you are almost ready to go!
+
+Get inside your project folder and fire the following command:
+
 ```bash
-WEBSERVER_PORT=3000 CURRENT_UID=$(id -u):$(id -g) docker-compose up
+CURRENT_UID=$(id -u):$(id -g) docker-compose up
 ```
 
-Connect your project to the new created REPL. If you are
-using CIDER in Emacs, just `M-x cider-connect-clj` or `C-c
-M-c` keychord. The host is `localhost` and the port should
-be `17020`.
+Open the `dev/user.clj` file in your preferred IDE and connect to your
+project at the new created REPL.
 
-Now, start the webserver with the `(start)` command inside the REPL.
-Your API should be on at the `http://localhost:17021/`
+If you are using CIDER in Emacs, just `M-x cider-connect-clj` or `C-c
+M-c` keychord. The host is `localhost` and the port should be `17020`.
+
+Now, go to the REPL and start the webserver with the `(start)`
+function.
+
+Your API should be on at the `http://localhost:3000/docs`
 
 You should also manually apply the migrations. This should do the trick:
 
@@ -30,6 +44,17 @@ You should also manually apply the migrations. This should do the trick:
 (require '[api-example.migrations :as m])
 (m/apply-migrations)
 ```
+
+## Possible errors
+
+For some reason, sometimes I need to use the `docker` IP to access my
+API, you can find out what is the docker IP by using:
+
+```bash
+docker ps ## get the CONTAINER_ID of the _repl container
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <CONTAINER_ID>
+```
+
 
 ## Emacs users
 
